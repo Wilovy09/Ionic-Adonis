@@ -9,12 +9,6 @@ export const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/Login/LoginView.vue"),
   },
   {
-    path: "/register",
-    name: "register",
-    meta: { requireAuth: false },
-    component: () => import("../views/SignIn/SignInView.vue"),
-  },
-  {
     path: "/",
     meta: { requireAuth: true },
     component: MainLayout,
