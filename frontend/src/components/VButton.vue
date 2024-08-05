@@ -5,7 +5,7 @@ defineProps<{
 </script>
 <template>
   <button
-    class="font-normal disabled:opacity-50 disabled:cursor-not-allowed w-full rounded-lg duration-300 p-2 transition-all text-sm text-center"
+    class="font-normal disabled:opacity-50 disabled:cursor-not-allowed w-full h-11 rounded-lg duration-300 p-2 transition-all text-sm text-center"
     :class="{
       'text-white animated-color': backgroundColor === 'primary',
       'bg-gray-100 text-black hover:enabled:bg-gray-300':
