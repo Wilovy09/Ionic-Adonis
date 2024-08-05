@@ -25,11 +25,13 @@ export const useAuthStore = defineStore("auth", () => {
   async function login(payload: any) {
     const result = await api("POST", "/login", payload);
     authentication(result);
+    return result;
   }
 
   async function register(payload: any) {
     const result = await api("POST", "/register", payload);
     authentication(result);
+    return result;
   }
 
   async function logout() {
