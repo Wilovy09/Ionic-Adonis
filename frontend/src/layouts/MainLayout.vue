@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAuthStore } from "@/stores/auth";
-import { IonIcon, IonPage, IonRouterOutlet, useIonRouter } from "@ionic/vue";
+import { IonIcon, IonPage, IonRouterOutlet } from "@ionic/vue";
 import { personCircle, backspace } from "ionicons/icons";
 import { useRouter } from "vue-router";
 
@@ -9,7 +9,7 @@ const router = useRouter();
 
 async function logout() {
   await auth.logout();
-  await router.replace("/login");
+  router.push("/login");
 }
 </script>
 
