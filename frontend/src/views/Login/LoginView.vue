@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { IonPage, IonContent } from "@ionic/vue";
 import { useAuthStore } from "@/stores/auth";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
@@ -57,60 +58,70 @@ function passwordsMatch() {
 </script>
 
 <template>
-  <main class="grid h-screen">
-    <div class="flex justify-center items-center">
-      <h1 class="text-center text-6xl">TEST</h1>
-    </div>
-    <form
-      @submit.prevent="loginMode === 'login' ? login() : signup()"
-      class="dropShadow bg-[#231e2a] rounded-tr-[40px] rounded-tl-[40px] px-6 flex flex-col justify-between"
-    >
-      <div class="flex-grow flex flex-col justify-center space-y-4">
-        <h2 class="text-center text-3xl">
-          {{ loginMode === "login" ? "Login" : "SignUp" }}
-        </h2>
-        <VInput v-model="form.email" type="email" labelText="Email" />
-        <VInput
-          v-model="form.password"
-          type="password"
-          labelText="Password"
-          hasEye
-        />
-        <VInput
-          v-if="loginMode === 'signup'"
-          v-model="confirmPassword"
-          type="password"
-          labelText="Confirm password"
-        />
-
-        <p
-          v-if="loginMode === 'login'"
-          class="text-center hover:underline cursor-pointer"
+  <ion-page>
+    <IonContent>
+      <main class="grid h-screen">
+        <div class="flex justify-center items-center">
+          <h1 class="text-center text-6xl">TEST</h1>
+        </div>
+        <form
+          @submit.prevent="loginMode === 'login' ? login() : signup()"
+          class="dropShadow bg-[#231e2a] rounded-tr-[40px] rounded-tl-[40px] px-6 flex flex-col justify-between"
         >
-          I forgot my password
-        </p>
-      </div>
-      <div class="mt-auto grid gap-4">
-        <VButton type="submit" backgroundColor="primary" :disabled="isLoading">
-          <template v-if="!isLoading">
-            {{ loginMode === "login" ? "Login" : "SignUp" }}
-          </template>
-          <VLoader v-show="isLoading" />
-        </VButton>
+          <div class="flex-grow flex flex-col justify-center space-y-4">
+            <h2 class="text-center text-3xl">
+              {{ loginMode === "login" ? "Login" : "SignUp" }}
+            </h2>
+            <VInput v-model="form.email" type="email" labelText="Email" />
+            <VInput
+              v-model="form.password"
+              type="password"
+              labelText="Password"
+              hasEye
+            />
+            <VInput
+              v-if="loginMode === 'signup'"
+              v-model="confirmPassword"
+              type="password"
+              labelText="Confirm password"
+            />
 
-        <p
-          @click="
-            loginMode === 'signup'
-              ? (loginMode = 'login')
-              : (loginMode = 'signup')
-          "
-          class="text-center mb-4 hover:underline transition-all cursor-pointer"
-        >
-          {{ loginMode === "login" ? "I dont have account" : "I have account" }}
-        </p>
-      </div>
-    </form>
-  </main>
+            <p
+              v-if="loginMode === 'login'"
+              class="text-center hover:underline cursor-pointer"
+            >
+              I forgot my password
+            </p>
+          </div>
+          <div class="mt-auto grid gap-4">
+            <VButton
+              type="submit"
+              backgroundColor="primary"
+              :disabled="isLoading"
+            >
+              <template v-if="!isLoading">
+                {{ loginMode === "login" ? "Login" : "SignUp" }}
+              </template>
+              <VLoader v-show="isLoading" />
+            </VButton>
+
+            <p
+              @click="
+                loginMode === 'signup'
+                  ? (loginMode = 'login')
+                  : (loginMode = 'signup')
+              "
+              class="text-center mb-4 hover:underline transition-all cursor-pointer"
+            >
+              {{
+                loginMode === "login" ? "I dont have account" : "I have account"
+              }}
+            </p>
+          </div>
+        </form>
+      </main>
+    </IonContent>
+  </ion-page>
 </template>
 
 <style>

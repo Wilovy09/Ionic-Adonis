@@ -7,14 +7,14 @@ const props = defineProps<{
   labelText: string;
   isDisabled?: boolean;
   type: "text" | "email" | "password";
-  hasEye?: boolean; // Propiedad opcional para mostrar el ícono de ojo
+  hasEye?: boolean;
 }>();
 const emit = defineEmits<{
   (e: "update:modelValue", value: string): void;
 }>();
 
 const isPassword = ref(props.type === "password");
-const showEye = props.hasEye && props.type === "password"; // Mostrar ojo solo si `hasEye` es true y el tipo es password
+const showEye = props.hasEye && props.type === "password";
 
 const togglePasswordVisibility = () => {
   isPassword.value = !isPassword.value;
@@ -28,7 +28,7 @@ const togglePasswordVisibility = () => {
       <input
         :type="isPassword ? 'password' : 'text'"
         :value="modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
+        @input="$emit('update:modelValue', ($event.target as any).value)"
         v-bind="$attrs"
         :disabled="isDisabled"
         :class="{ 'text-base': isDisabled }"
